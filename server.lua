@@ -1,0 +1,15 @@
+local QBCore = exports["qb-core"]:GetCoreObject()
+
+RegisterServerEvent('nkoTakeJob:unemployed')
+AddEventHandler('nkoTakeJob:unemployed', function()
+    local Player = QBCore.Functions.GetPlayer(source)
+    Player.Functions.SetJob("unemployed", 0)
+    TriggerClientEvent('QBCore:Notify', source, 'You left the profession, now you are an unemployed civilian.', "success")
+end)
+
+RegisterServerEvent('nkoTakeJob:job')
+AddEventHandler('nkoTakeJob:job', function(job)
+    local Player = QBCore.Functions.GetPlayer(source)
+    Player.Functions.SetJob(job, 0)
+    TriggerClientEvent('QBCore:Notify', source, 'Now you can start your career, good luck.', "success")
+end)
