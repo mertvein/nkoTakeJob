@@ -40,7 +40,9 @@ local function createPeds()
                     label = v.targetLabel,
                     icon = v.targetIcon,
                     type = 'client',
-                    event = 'nkoTakeJob:menu'
+                    action = function()
+                        openMenu(k)
+                    end,
                 }
             },
             distance = 2.0
@@ -49,24 +51,25 @@ local function createPeds()
     pedSpawned = true
 end
 
-RegisterNetEvent('nkoTakeJob:menu')
-AddEventHandler('nkoTakeJob:menu', function()
+function openMenu(area)
     QBCore.Functions.Notify(Config.Text['notify'], 'error', 10000)
-    for k, v in pairs(Config.Peds) do
+    for k, v in pairs(Config.Peds[area]) do
         local menu = {
             {
                 header = Config.Text['header'],
-                txt = '<span style="color:#be7e42e6; font-weight: bold;">'..v.jobName..'</span>',
+                txt = '<span style="color:#be7e42e6; font-weight: bold;">'..Config.Peds[area].jobName..'</span>',
                 icon = "fa-solid fa-briefcase",
                 isMenuHeader = true,
             },
             {
                 header = Config.Text['takeJob_h'],
-                txt = Config.Text['takeJob_t']..v.jobName..'.',
+                txt = Config.Text['takeJob_t']..Config.Peds[area].jobName..'.',
                 icon = "fa-solid fa-check",
                 params = {
                     event = 'nkoTakeJob:cl:job',
-                    args = v.job
+                    args = {
+                        job = Config.Peds[area].job
+                    }
                 }
             },
             {
@@ -80,13 +83,14 @@ AddEventHandler('nkoTakeJob:menu', function()
         }
         exports['qb-menu']:openMenu(menu)
     end
-end)
+end
 
 RegisterNetEvent('nkoTakeJob:cl:unemployed', function()
     TriggerServerEvent('nkoTakeJob:unemployed')
 end)
 
-RegisterNetEvent('nkoTakeJob:cl:job', function(job)
+RegisterNetEvent('nkoTakeJob:cl:job', function(args)
+    local job = args.job
     TriggerServerEvent('nkoTakeJob:job', job)
 end)
 
