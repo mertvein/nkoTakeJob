@@ -1,10 +1,7 @@
 # nkoTakeJob
-- Advanced Buying Cars [QBCORE]
+- Advanced Taking Job [QBCORE]
 - New QBCore
 
-## Photo Showcase
-![image](https://cdn.discordapp.com/attachments/1090049427638587512/1090049427865096272/image.png)
-![image](https://cdn.discordapp.com/attachments/1090049427638587512/1090049428158693376/image.png)
 ## Discord
 - https://discord.gg/nko
 
