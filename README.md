@@ -3,7 +3,7 @@
 - New QBCore
 
 ## Discord
-- https://discord.gg/nko
+- https://discord.gg/mert
 
 ## Features
 - Script using full qb-target
